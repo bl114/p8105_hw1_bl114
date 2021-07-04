@@ -17,7 +17,7 @@ Create a data frame comprised of:
   * a character vector of length 10
   * a factor vector of length 10, with 3 different factor “levels”
 
-```{r}
+```{r dataframe}
 library(tidyverse)
 dataframe_problem_1 = tibble (
   random_sample = rnorm(10),
@@ -30,12 +30,60 @@ dataframe_problem_1
 
 ```
 
-## Including Plots
+Try to take the mean of each variable in your dataframe. What works and what doesn’t?
 
-You can also embed plots, for example:
+```{r means}
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+mean(dataframe_problem_1$random_sample)
+mean(dataframe_problem_1$logical_vector)
+mean(dataframe_problem_1$charac_vector)
+mean(dataframe_problem_1$factor_vector)
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+data("penguins", package = "palmerpenguins")
+
+Running the mean function on the random sample and the logical vector works, but running it on the character vector and factor vector does not.
+
+Now, let's apply as.numeric function to the logical, character, and factor variables. We will show the code but not the output:
+
+```{r as.numeric, eval=FALSE}
+
+as.numeric(dataframe_problem_1$logical_vector)
+as.numeric(dataframe_problem_1$charac_vector)
+as.numeric(dataframe_problem_1$factor_vector)
+```
+
+Logical vectors are converted to 0's and 1's (though they are already treated as such when applying the mean function). Character vectors cannot be converted, and factor vectors are converted to 1, 2, and 3 (perhaps alphabetically).
+
+
+In a second code chunk, we will:
+
+  * Convert the logical vector to numeric, and multiply the random sample by the result
+  * Convert the logical vector to a factor, and multiply the random sample by the result
+  * Convert the logical vector to a factor and then convert the result to numeric, and multiply the random sample by the result
+
+```{r convertions}
+
+logical_numeric = as.numeric(dataframe_problem_1$logical_vector)
+dataframe_problem_1$random_sample*logical_numeric
+
+logical_factor = as.factor(dataframe_problem_1$logical_vector)
+dataframe_problem_1$random_sample*logical_factor
+
+factor_now_numeric = as.numeric(logical_factor)
+dataframe_problem_1$random_sample*factor_now_numeric
+
+```
+
+### Problem 2
+
+Load the dataset "penguins"
+
+```{r penguins, echo=FALSE}
+data("penguins", package = "palmerpenguins")
+```
+
+
