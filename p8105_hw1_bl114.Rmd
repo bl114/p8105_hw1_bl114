@@ -1,20 +1,33 @@
 ---
 title: "p8105_hw1_bl114"
+author: Ben Lebwohl
+date: July 2021
 output: github_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
-## R Markdown
+# Homework 1
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+### Problem 1
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Create a data frame comprised of:
 
-```{r cars}
-summary(cars)
+  * a random sample of size 10 from a standard Normal distribution
+  * a logical vector indicating whether elements of the sample are greater than 0
+  * a character vector of length 10
+  * a factor vector of length 10, with 3 different factor “levels”
+
+```{r}
+library(tidyverse)
+dataframe_problem_1 = tibble (
+  random_sample = rnorm(10),
+  logical_vector = random_sample >0,
+  charac_vector = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
+  factor_vector = factor(c("S", "M", "L", "S", "M","L","S", "M", "L", "S"))
+)
+
+dataframe_problem_1
+
 ```
 
 ## Including Plots
