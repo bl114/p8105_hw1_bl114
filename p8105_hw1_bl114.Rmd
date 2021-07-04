@@ -42,9 +42,6 @@ mean(dataframe_problem_1$factor_vector)
 ```
 
 
-
-data("penguins", package = "palmerpenguins")
-
 Running the mean function on the random sample and the logical vector works, but running it on the character vector and factor vector does not.
 
 Now, let's apply as.numeric function to the logical, character, and factor variables. We will show the code but not the output:
@@ -82,8 +79,23 @@ dataframe_problem_1$random_sample*factor_now_numeric
 
 Load the dataset "penguins"
 
-```{r penguins, echo=FALSE}
+```{r penguins}
 data("penguins", package = "palmerpenguins")
 ```
+The penguins data set has the following variables: `r colnames(penguins)`
+
+The penguins dataset contains `r nrow(penguins)` rows
+
+The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm = TRUE)`
+
+
+Make a scatterplot of flipper_length_mm (y) vs bill_length_mm (x); color points using the species variable. Export your first scatterplot to your project directory using ggsave.
+
+```{r scatterplot}
+ggplot(penguins, aes (x=bill_length_mm, y=flipper_length_mm, color = species)) + geom_point()
+ggsave("species_scatterplot.pdf")
+
+```
+
 
 
